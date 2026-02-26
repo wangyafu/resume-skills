@@ -42,9 +42,7 @@ def _paper_css(paper: str) -> str:
     size = "A4" if paper.upper() == "A4" else "Letter"
     return (
         "<style>\n"
-        "  @page { size: "
-        + size
-        + "; margin: 12mm; }\n"
+        "  @page { size: " + size + "; }\n"
         "  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }\n"
         "</style>\n"
     )
@@ -52,13 +50,18 @@ def _paper_css(paper: str) -> str:
 
 def _ensure_html_has_page_size(html_path: Path, paper: str) -> Path:
     content = html_path.read_text(encoding="utf-8", errors="replace")
-    # If user already defines @page size, do nothing.
-    if "@page" in content and "size" in content:
+    lower = content.lower()
+
+    # If the document already defines @page rules, don't override them.
+    # Browser "extra margins" should be controlled by the document's own print CSS.
+    if "@page" in lower:
         return html_path
 
+    # Otherwise inject a minimal print rule:
+    # - set the paper size
+    # - set @page margin to 0 to avoid browser defaults
+    css = _paper_css(paper).replace("@page { size: ", "@page { size: ").replace("; }\n", "; margin: 0; }\n", 1)
     injected = content
-    css = _paper_css(paper)
-    lower = content.lower()
     head_idx = lower.find("<head")
     if head_idx != -1:
         head_close = lower.find("</head>", head_idx)
@@ -100,50 +103,14 @@ def _html_to_pdf(in_path: Path, out_pdf: Path, paper: str, chrome_path: Path | N
     _run(cmd)
 
 
-def _typst_to_pdf(in_path: Path, out_pdf: Path) -> None:
-    typst = shutil.which("typst")
-    if not typst:
-        raise RuntimeError("typst not found on PATH.")
-    out_pdf.parent.mkdir(parents=True, exist_ok=True)
-    _run([typst, "compile", str(in_path), str(out_pdf)])
-
-
-def _latex_to_pdf(in_path: Path, out_pdf: Path, workdir: Path | None = None) -> None:
-    latexmk = shutil.which("latexmk")
-    if not latexmk:
-        raise RuntimeError("latexmk not found on PATH.")
-
-    out_pdf.parent.mkdir(parents=True, exist_ok=True)
-    build_dir = Path(tempfile.mkdtemp(prefix="resume_studio_latex_"))
-
-    try:
-        _run(
-            [
-                latexmk,
-                "-xelatex",
-                "-interaction=nonstopmode",
-                "-halt-on-error",
-                "-outdir=" + str(build_dir),
-                str(in_path.resolve()),
-            ],
-            cwd=workdir,
-        )
-        produced = build_dir / (in_path.stem + ".pdf")
-        if not produced.exists():
-            raise RuntimeError("latexmk finished but PDF not found: " + str(produced))
-        shutil.copyfile(produced, out_pdf)
-    finally:
-        shutil.rmtree(build_dir, ignore_errors=True)
-
-
 def main(argv: list[str]) -> int:
-    parser = argparse.ArgumentParser(description="Compile HTML/Typst/LaTeX resume to PDF.")
-    parser.add_argument("--in", dest="in_path", required=True, help="Input .html/.typ/.tex")
+    parser = argparse.ArgumentParser(description="Compile HTML resume to PDF.")
+    parser.add_argument("--in", dest="in_path", required=True, help="Input .html/.htm")
     parser.add_argument("--out", dest="out_pdf", required=True, help="Output PDF path")
     parser.add_argument("--paper", choices=["A4", "Letter"], default="A4")
     parser.add_argument(
         "--engine",
-        choices=["auto", "chrome", "typst", "latexmk"],
+        choices=["auto", "chrome"],
         default="auto",
         help="Compilation engine.",
     )
@@ -163,22 +130,13 @@ def main(argv: list[str]) -> int:
     suffix = in_path.suffix.lower()
     engine = args.engine
     if engine == "auto":
-        if suffix in (".html", ".htm"):
-            engine = "chrome"
-        elif suffix == ".typ":
-            engine = "typst"
-        elif suffix == ".tex":
-            engine = "latexmk"
-        else:
-            raise ValueError(f"Unsupported input extension for auto: {suffix}")
+        if suffix not in (".html", ".htm"):
+            raise ValueError(f"Unsupported input extension: {suffix} (HTML only)")
+        engine = "chrome"
 
     chrome_path = Path(args.chrome) if args.chrome else None
     if engine == "chrome":
         _html_to_pdf(in_path, out_pdf, args.paper, chrome_path)
-    elif engine == "typst":
-        _typst_to_pdf(in_path, out_pdf)
-    elif engine == "latexmk":
-        _latex_to_pdf(in_path, out_pdf)
     else:
         raise ValueError("Unknown engine: " + str(engine))
 

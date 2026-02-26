@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @page { size: A4; margin: 0; }
+    body { margin: 0; font-family: Arial, sans-serif; }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+    .page:last-child { page-break-after: auto; }
+  </style>
+</head>
+<body>
+  <section class="page">Page 1</section>
+  <section class="page">Page 2</section>
+  <section class="page">Page 3</section>
+</body>
+</html>
