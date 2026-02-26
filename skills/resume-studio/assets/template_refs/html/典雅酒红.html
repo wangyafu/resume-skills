@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 李明轩</title>
+    <style>
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;}
+        :root {
+            --accent-color: #c04848; /* 专业深红色 */
+            --accent-bg-light: #fdf6f6; /* 极淡的红色背景 */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-color: #eeeeee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #fff;
+            color: var(--text-dark);
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 24px 32px;
+        }
+
+        
+
+        .resume-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .header-info h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .header-info h1 span {
+            font-weight: 400;
+            font-size: 20px;
+            color: var(--text-light);
+            margin-left: 6px;
+        }
+
+        .header-info p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
+        
+        .photo-wrapper {
+            position: absolute;
+            top: -6px;
+            right: 0px;
+        }
+
+        .photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section {
+            margin-bottom: 18px;
+        }
+
+        .section-title-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: var(--accent-bg-light);
+            padding: 3px 8px;
+            margin-bottom: 8px;
+        }
+        
+        .title-bar {
+            width: 4px;
+            height: 16px;
+            background-color: var(--accent-color);
+            margin-right: 7px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .section-content {
+            padding-left: 10px;
+        }
+        
+        .entry {
+            margin-bottom: 10px;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1px;
+        }
+
+        .entry-title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .entry-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            text-align: right;
+            flex-shrink: 0;
+            padding-left: 10px;
+        }
+
+        .entry-subtitle {
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+        
+        .entry-content ul {
+            list-style-position: outside;
+            padding-left: 14px;
+        }
+        
+        .entry-content li {
+            margin-bottom: 2px;
+            color: var(--text-light);
+        }
+
+        .honors-list p, .other-info p {
+            color: var(--text-light);
+            margin-bottom: 2px;
+        }
+
+        .other-info p strong {
+            color: var(--text-dark);
+        }
+
+    </style>
+</head>
+<body>
+
+
+        <header class="resume-header">
+            <div class="header-info">
+                <h1>李明轩<span></span></h1>
+                <p>13812345678 | limingxuan@example.com</p>
+                <p>AI应用开发工程师</p>
+                <p>希望打造有趣又有用的AI产品</p>
+            </div>
+            <div class="photo-wrapper">
+                <img src="https://oss-pai-wwja1ucw1pykevvz32-cn-shanghai.oss-cn-shanghai.aliyuncs.com/aicv/recv/photo.png" alt="李明轩证件照" class="photo">
+            </div>
+        </header>
+
+        <main class="resume-body">
+           
+
+            <section class="section">
+                <div class="section-title-wrapper">
+                    <div class="title-bar"></div>
+                    <h2 class="section-title">教育背景</h2>
+                </div>
+                <div class="section-content">
+                    <div class="entry">
+                        <div class="entry-header">
+                            <h3 class="entry-title">北京理工大学（985）</h3>
+                            <div class="entry-meta">
+                                2021.09 - 2025.07 <br> 北京
+                            </div>
+                        </div>
+                        <p class="entry-subtitle">计算机科学与技术（本科）</p>
+                        <div class="entry-content">
+                            <ul>
+                                <li>绩点3.85（8/45）/ CET-6：578</li>
+                                <li>美国大学生数学建模竞赛M奖</li>
+                                <li>全国大学生数学竞赛省二等奖</li>
+                                <li>北京市计算机应用技术大赛省一等奖</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-title-wrapper">
+                    <div class="title-bar"></div>
+                    <h2 class="section-title">实习经历</h2>
+                </div>
+                <div class="section-content">
+                    <div class="entry">
+                        <div class="entry-header">
+                            <h3 class="entry-title">字节跳动（抖音）</h3>
+                            <div class="entry-meta">
+                                2024年7月 - 至今 <br> 北京
+                            </div>
+                        </div>
+                        <p class="entry-subtitle">AI产品开发实习生</p>
+                        <div class="entry-content">
+                            <ul>
+                                <li>作为核心成员参与抖音推荐算法优化项目，推动项目从概念验证到线上部署：</li>
+                                <li><strong>问题分析与方案设计</strong>：在项目初期通过数据分析发现用户停留时长下降的痛点，提出基于“多模态内容理解”的个性化推荐策略，将用户行为预测准确率提升15%。</li>
+                                <li><strong>技术实现与创新</strong>：主导开发A/B测试平台，设计支持实时反馈的动态权重调整机制，构建“内容质量评估”与“用户兴趣建模”相结合的双层过滤体系。</li>
+                                <li><strong>成果与影响</strong>：项目在技术总监汇报中获得高度认可，成功完成“研发-测试-灰度-全量”上线流程，算法稳定服务日活用户1000万以上。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-header">
+                            <h3 class="entry-title">腾讯</h3>
+                            <div class="entry-meta">
+                                2024年3月 - 2024年6月 <br> 北京
+                            </div>
+                        </div>
+                        <p class="entry-subtitle">产品策划实习生</p>
+                        <div class="entry-content">
+                            <ul>
+                                <li><strong>微信小程序AI助手</strong>：主导微信生态AI助手小程序的产品设计与原型开发，设计多轮对话管理、智能任务分解等核心模块，使用React完成前端原型开发并撰写完整PRD文档，项目已进入开发阶段。</li>
+                                <li><strong>社交媒体数据分析工具</strong>：基于Python数据分析技术栈开发社交媒体趋势分析工具，集成多个API实现热点话题挖掘、用户画像分析等功能，开发的分析报告生成器累计服务500+内部用户。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-title-wrapper">
+                    <div class="title-bar"></div>
+                    <h2 class="section-title">个人项目</h2>
+                </div>
+                <div class="section-content">
+                    <div class="entry">
+                        <div class="entry-header">
+                            <h3 class="entry-title">SmartDataFlow</h3>
+                            <div class="entry-meta">
+                                2024年2月 <br> 北京
+                            </div>
+                        </div>
+                        <p class="entry-subtitle">独立开发</p>
+                        <div class="entry-content">
+                            <ul>
+                                <li>基于大模型的智能数据处理平台，AI将调用相应工具帮助用户完成数据分析和可视化任务。</li>
+                                <li><strong>多Agent协同架构</strong>：构建了数据分析Agent、可视化Agent及代码生成Agent的分布式Agent系统，各Agent间通过消息队列通信，共享执行上下文但保持独立的专业领域知识。主控Agent基于Chain-of-Thought设计，能解析用户需求、分配任务、监控执行状态并整合结果。</li>
+                                <li><strong>智能上下文管理</strong>：引入层次化知识图谱机制，DataFlow.yaml作为全局配置，定义数据源和处理规则。为每个数据集配置语义化元数据，提升AI对数据结构和业务含义的理解精度。</li>
+                                <li><strong>交互式执行环境</strong>：集成Jupyter内核实现代码实时执行和结果展示。为防止上下文溢出，对长输出内容采用分段存储和智能摘要技术，确保关键信息不丢失。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section">
+                <div class="section-title-wrapper">
+                    <div class="title-bar"></div>
+                    <h2 class="section-title">专业技能</h2>
+                </div>
+                <div class="section-content other-info">
+                   <p><strong>技能:</strong> Python, JavaScript, 推荐系统, 前端开发, React, Redis, MySQL, Docker, TensorFlow, PyTorch, 知识图谱, 向量检索, Jupyter, Agent架构, Chain-of-Thought, LangChain, OpenAI API, 算法, 数据结构, 分布式系统, A/B测试平台</p>
+                   <p><strong>语言:</strong> CET-4, CET-6</p>
+                </div>
+            </section>
+
+        </main>
+
+
+</body>
+</html>

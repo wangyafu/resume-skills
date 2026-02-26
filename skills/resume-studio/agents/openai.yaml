@@ -1,0 +1,7 @@
+interface:
+  display_name: "简历工作台"
+  short_description: "直接写HTML/Typst/LaTeX源文件并导出PDF"
+  default_prompt: "Use $resume-studio to create or tailor my resume and export a PDF."
+
+policy:
+  allow_implicit_invocation: true
