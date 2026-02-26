@@ -1,5 +1,5 @@
 ---
-name: resume-studio
+name: resume-master
 description: 通过直接编写可编辑的 HTML、Typst 或 LaTeX 源文件（而不是填写模板/中间表示 IR），来创建新简历或根据职位描述（JD）量身定制现有简历，然后编译并交付可打印的 PDF。当用户需要以下操作时使用：(1) 从头开始创建一份全新的简历；(2) 针对 JD 重写旧简历（PDF/DOCX/HTML/Typst/LaTeX），同时选择保留原始样式（如果存在可编辑的源文件）或遵循参考示例样式；或 (3) 在 Windows 上使用 Chrome headless、Typst 或 latexmk 将现有的 .html/.typ/.tex 简历编译为 PDF。
 ---
 
@@ -26,7 +26,6 @@ description: 通过直接编写可编辑的 HTML、Typst 或 LaTeX 源文件（�
 - `references/resume_quality_spec.md`
 - `references/jd_tailoring_checklist.md`
 - `references/authoring_rules.md`
-- `references/toolchain_windows.md`
 
 ### 脚本
 - 编译为 PDF: `scripts/render_pdf.py`
@@ -44,7 +43,7 @@ description: 通过直接编写可编辑的 HTML、Typst 或 LaTeX 源文件（�
 ## 工作流 B：根据 JD 定制旧简历
 
 
-1) 阅读 JD 并起草一份一页纸的 `work/<name>.changes.md` 计划（关键词、必要条件、侧重点、需删除的内容）。如果你需要了解新的信息，请你询问用户。
+1) 阅读 JD和旧简历， 并起草一份一页纸的 `work/<name>.changes.md` 计划（关键词、必要条件、侧重点、需删除的内容）。如果你需要了解新的信息，请你询问用户。
 2) 提取旧简历文本作为工作笔记（不要将提取的内容直接作为制品交付）：
    - `python scripts/ingest_resume.py --in <old> [--with-layout for PDF]`
 3) 询问样式策略：
