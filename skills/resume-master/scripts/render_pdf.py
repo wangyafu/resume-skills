@@ -97,6 +97,7 @@ def _html_to_pdf(in_path: Path, out_pdf: Path, paper: str, chrome_path: Path | N
         "--no-default-browser-check",
         "--disable-extensions",
         f"--print-to-pdf={out_pdf.resolve()}",
+        "--no-pdf-header-footer",
         "--print-to-pdf-no-header",
         file_url,
     ]
