@@ -43,3 +43,11 @@ skills\resume-master即为本项目提供的skills，请你将此skill安装到�
 
 - 增加更多模板
 - 增加分行业、分岗位的指导文件
+
+欢迎大家分享自己真实使用的简历模板、写简历总结出的经验、对什么是好简历的认知。你可以提出issue、pr，或者在小红书上联系我：[Wonderful王](https://www.xiaohongshu.com/user/profile/635f85b8000000001901fe43)
+
+## 为什么采用html
+
+- markdown有许多无法实现的排版效果，如分栏显示的效果
+- latex和typst先天为排版设计，但至今AI使用它们时也容易犯语法错误
+- html则是AI最熟悉的标记语言，同时只需要浏览器就可以将其打印为PDF
