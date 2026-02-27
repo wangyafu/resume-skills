@@ -16,6 +16,7 @@ resume-master-skill是一个致力于帮您编写精美简历的 Skill，它可�
 - 极简纯白
 - 沉稳双栏
 - 清新蓝灰
+
 你可以查看 `skills\resume-master\assets\template_refs\images` 目录下的图片，了解模板的视觉效果。
 
 3个脚本：
@@ -28,7 +29,7 @@ resume-master-skill是一个致力于帮您编写精美简历的 Skill，它可�
 
 ### 面向人类
 
-将链接：<https://github.com/wangyafu/resume-skills交给你的Agent。>
+将链接：<https://github.com/wangyafu/resume-skills> 交给你的Agent。
 
 ### 面向Agent
 
