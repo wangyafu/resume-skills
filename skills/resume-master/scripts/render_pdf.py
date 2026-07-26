@@ -24,18 +24,44 @@ def _run(cmd: list[str], *, cwd: Path | None = None) -> None:
 
 
 def _find_chrome() -> Path | None:
-    candidates = []
-    program_files = os.environ.get("ProgramFiles")
-    if program_files:
-        candidates.append(Path(program_files) / "Google/Chrome/Application/chrome.exe")
-    program_files_x86 = os.environ.get("ProgramFiles(x86)")
-    if program_files_x86:
-        candidates.append(Path(program_files_x86) / "Google/Chrome/Application/chrome.exe")
+    candidates: list[Path] = []
+    if sys.platform == "darwin":
+        candidates.extend(
+            [
+                Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
+                Path.home()
+                / "Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            ]
+        )
+    elif os.name == "nt":
+        program_files = os.environ.get("ProgramFiles")
+        if program_files:
+            candidates.append(
+                Path(program_files) / "Google/Chrome/Application/chrome.exe"
+            )
+        program_files_x86 = os.environ.get("ProgramFiles(x86)")
+        if program_files_x86:
+            candidates.append(
+                Path(program_files_x86) / "Google/Chrome/Application/chrome.exe"
+            )
+
     for candidate in candidates:
         if candidate.exists():
             return candidate
-    found = shutil.which("chrome") or shutil.which("chrome.exe")
-    return Path(found) if found else None
+
+    executable_names = (
+        "google-chrome",
+        "google-chrome-stable",
+        "chrome",
+        "chrome.exe",
+        "chromium",
+        "chromium-browser",
+    )
+    for name in executable_names:
+        found = shutil.which(name)
+        if found:
+            return Path(found)
+    return None
 
 
 def _paper_css(paper: str) -> str:
@@ -82,7 +108,8 @@ def _html_to_pdf(in_path: Path, out_pdf: Path, paper: str, chrome_path: Path | N
     chrome = chrome_path or _find_chrome()
     if not chrome or not chrome.exists():
         raise RuntimeError(
-            "Chrome not found. Install Google Chrome or put chrome.exe on PATH."
+            "Chrome not found. Install Google Chrome, put its executable on PATH, "
+            "or pass its path with --chrome."
         )
 
     in_path = _ensure_html_has_page_size(in_path, paper)
@@ -119,7 +146,7 @@ def main(argv: list[str]) -> int:
         "--chrome",
         dest="chrome",
         default="",
-        help="Optional explicit path to chrome.exe",
+        help="Optional explicit path to the Google Chrome executable",
     )
     args = parser.parse_args(argv)
 
