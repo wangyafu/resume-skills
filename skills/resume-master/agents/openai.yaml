@@ -1,7 +1,7 @@
 interface:
   display_name: "简历工作台"
-  short_description: "直接写HTML/Typst/LaTeX源文件并导出PDF"
-  default_prompt: "Use $resume-studio to create or tailor my resume and export a PDF."
+  short_description: "直接编写或按JD定制可编辑HTML简历，并导出可打印PDF文件"
+  default_prompt: "Use $resume-master to create or tailor my resume as editable HTML and export a printable PDF."
 
 policy:
   allow_implicit_invocation: true
